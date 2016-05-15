@@ -10,12 +10,11 @@ class DB {
      */
     public static function init($nom = "echec"){
         if (!DB::createDatabase($nom))
-            return "false";
+            return;
 
         mysql_select_db($nom);
         
         DB::createTables();
-        return mysql_error();
     }
 
     /**
