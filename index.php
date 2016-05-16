@@ -5,18 +5,16 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <style>
-    divCase1:nth-child(odd)     {
+    divCase1:nth-child(odd),
+    divCase2:nth-child(even){
             background: #F7F8E0;
     }
-    divCase1:nth-child(even)     {
+    divCase1:nth-child(even),
+    divCase2:nth-child(odd)
+    {
             background: #1c1c1c;
     }
-            divCase2:nth-child(odd)     {
-            background: #1c1c1c;
-    }
-    divCase2:nth-child(even)     {
-            background: #F7F8E0;
-    }
+    
 </style>
 <script>function test(){alert("test");}</script>
 <script>
