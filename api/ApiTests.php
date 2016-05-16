@@ -13,6 +13,7 @@ and open the template in the editor.
         <?php
             require_once 'InitDB.php';
             mysql_connect("localhost", "root", "");
+            echo DB::drop();
             echo DB::init();
         ?>
     </body>
