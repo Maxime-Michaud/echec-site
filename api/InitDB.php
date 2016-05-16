@@ -1,5 +1,5 @@
 <?php
-
+require_once 'DefiManager.php';
 /**
  * Initialise la base de donnée utilisée par l'application
  */
@@ -8,15 +8,20 @@ class DB {
     /**
      * Initialise la base de donnée. La connection avec le serveur doit déja avoir été établie
      */
-    public static function init($nom = "echec"){
+    public static function init($nom = "echec") {
         if (!DB::createDatabase($nom))
             return;
 
         mysql_select_db($nom);
         
         DB::createTables();
+        DB::populate();
     }
 
+    public static function drop($nom = "echec") {
+        mysql_query("DROP DATABASE ".$nom);
+    }
+    
     /**
      * Construis la base de donnée. Return false si elle existe déja
      */
@@ -125,4 +130,11 @@ CREATE TABLE IF NOT EXISTS suggestions(
         }
     }
 
+    /**
+     * Ajoute des données a la bd
+     */
+    private static function populate(){
+        DefiManager::add(1, "Defi_Test", 0, 5, 1, 6, "PB777,PN000");
+        
+    }
 }
