@@ -25,7 +25,7 @@ and open the template in the editor.
 					<li><a href="defi.php">Les défis</a></li>
 					<li><a href="client.php">Client</a></li>
 					<li><a href="statistique.php">Statistique</a></li>   
-					<li><a href="historique.php">Historique des parties</a></li>
+					<li><a href="grille.php">Historique des parties</a></li>
 					<li><a href="telechargement.php">Téléchargement</a></li>   					
 				  </ul>
 			</div>
