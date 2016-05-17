@@ -23,8 +23,8 @@ class DefiManager {
      * @param string $grille
      * @return 
      */
-    static public function add($id, $nom, $nb_tours_max, $score, $difficulte, $nombre_evaluations, $grille){
-        $query = "INSERT INTO defi VALUES ($id, '$nom', $nb_tours_max, $score, $difficulte, $nombre_evaluations, '$grille', 0)";
+    static public function add($id, $nom, $nb_tours_max, $score, $difficulte, $nombre_evaluations, $grille, $updated = 0){
+        $query = "INSERT INTO defi VALUES ($id, '$nom', $nb_tours_max, $score, $difficulte, $nombre_evaluations, '$grille', $updated)";
         mysql_query($query);
     }
 }
