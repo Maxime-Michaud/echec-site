@@ -1,5 +1,6 @@
 <?php
-require_once 'DefiManager.php';
+require_once './DefiManager.php';
+require_once './UserManager.php';
 /**
  * Initialise la base de donnée utilisée par l'application
  */
@@ -135,6 +136,8 @@ CREATE TABLE IF NOT EXISTS suggestions(
      */
     private static function populate(){
         DefiManager::add(1, "Defi_Test", 0, 5, 1, 6, "PB777,PN000");
+        UserManager::add(1, "Bob", "f", "NULL", NULL, NULL, 1, 0);
+        UserManager::add(2, "Bob", "f", "NULL", NULL, NULL, 1, 0);
         
     }
 }
