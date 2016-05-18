@@ -134,18 +134,30 @@ CREATE TABLE IF NOT EXISTS suggestions(
      * Ajoute des données a la bd
      */
     private static function populate(){
+        echo "<br>Defi:<br>";
         DefiManager::add(1, "Defi_Test", 0, 5, 1, 6, "PB777,PN000");
         
+        echo "<br>Utilisateurs:<br>";
         UserManager::add(1, "Bob", "f", "NULL", NULL, NULL, 1, 0);
         UserManager::add(2, "Bob", "f", "NULL", NULL, NULL, 1, 0);
         
+        echo "<br>Relations:<br>";
         RelationManager::add(1, 2, 2);
         RelationManager::add(1, 2, 1);
         
+        echo "<br>Defi & Utilisateurs:<br>";
         DefiManager::addToUser(2, 1, 1, 1, 1);
         DefiManager::addToUser(NULL, 1, 1, 1, 1);
         
+        echo "<br>Parties:<br>";
         PartieManager::add(1, 1, 1, 2);
         PartieManager::add(2, 2, 1, 2);
+        
+        echo "<br>Tours:<br>";
+        PartieManager::addTours(1, "abc");
+        PartieManager::addTours(1, "def");
+        PartieManager::addTours(2, "abc");
+        PartieManager::addTours(2, "def");
+
     }
 }

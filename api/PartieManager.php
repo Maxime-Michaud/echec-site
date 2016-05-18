@@ -14,19 +14,11 @@ require_once './Utils.php';
 class PartieManager {
     
     /**
-     * CREATE TABLE IF NOT EXISTS partie(
-	id INT PRIMARY KEY,
-	elo_blanc INT, 
-	elo_noir INT,
-	gain_blanc INT,
-	gain_noir INT,
-	gagnant INT,
-	noir INT,
-	blanc INT,
-	FOREIGN KEY (gagnant) REFERENCES utilisateur(id),
-	FOREIGN KEY (noir) REFERENCES utilisateur(id),
-	FOREIGN KEY (blanc) REFERENCES utilisateur(id) 
-);
+     * Ajoute une partie a la bd
+     * @param int $id Id de la partie. peut etre null
+     * @param int $gagnant id du gagnant. doit etre égal a $noir ou $blanc
+     * @param int $noir id du joueur noir
+     * @param int $blanc id du joueur blanc
      */
     static public function add($id, $gagnant, $noir, $blanc)
     {
@@ -34,6 +26,20 @@ class PartieManager {
             $id = getLast("partie") + 1;
         
         $query = "INSERT INTO partie VALUES ($id, NULL, NULL, NULL, NULL, $gagnant, $blanc, $noir)";
+
+        mysql_query($query);
+    }
+    
+    /**
+     * Ajoute un tour a une partie
+     * @param int $partie ID de la partie
+     * @param string $move représentation textuelle du tour (max 10 char)
+     */
+    static public function addTours($partie, $move)
+    {
+        $tour = getLast("tours", "tour", "partie = $partie") + 1;
+        $query = "INSERT INTO tours VALUES ($partie, $tour, '$move')";
+
         mysql_query($query);
     }
 }
