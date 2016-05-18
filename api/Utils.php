@@ -1,16 +1,25 @@
 <?php
-function getLast($table)
+/**
+ * Sélectionne le dernier élément d'une table
+ * @param string $table nom de la table
+ * @param string $column nom de la colonne qui contient la PK.
+ * @param string $whereCondition Condition where a appliquer. null = pas de condition.
+ * @return int
+ */
+function getLast($table, $column = "id", $whereCondition = null)
 {
-    $query = "SELECT id FROM $table ORDER BY id DESC LIMIT 1 ";
+    if ($whereCondition === null)
+        $whereCondition = "1 = 1";
+        
+    $query = "SELECT $column FROM $table WHERE $whereCondition ORDER BY $column DESC LIMIT 1 ";
     $rs = mysql_query($query);
+           echo "$query <br>";
+
+    if ($rs === false || $rs === NULL)
+        return 0;
+    
     $row = mysql_fetch_assoc($rs);
 
-    if (null !== $row['id'])
-        return $row['id'] ;
+    return $row[$column] ;
 
-    return 0;
 }
-
-
-    
-
