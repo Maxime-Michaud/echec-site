@@ -2,6 +2,7 @@
 require_once './DefiManager.php';
 require_once './UserManager.php';
 require_once './RelationManager.php';
+require_once './PartieManager.php';
 /**
  * Initialise la base de donnée utilisée par l'application
  */
@@ -96,12 +97,9 @@ CREATE TABLE IF NOT EXISTS partie(
 	elo_noir INT,
 	gain_blanc INT,
 	gain_noir INT,
-	grille INT,
 	gagnant INT,
 	noir INT,
 	blanc INT,
-	nouvelle INT,	
-	FOREIGN KEY (grille) REFERENCES grille(id),
 	FOREIGN KEY (gagnant) REFERENCES utilisateur(id),
 	FOREIGN KEY (noir) REFERENCES utilisateur(id),
 	FOREIGN KEY (blanc) REFERENCES utilisateur(id) 
@@ -146,5 +144,8 @@ CREATE TABLE IF NOT EXISTS suggestions(
         
         DefiManager::addToUser(2, 1, 1, 1, 1);
         DefiManager::addToUser(NULL, 1, 1, 1, 1);
+        
+        PartieManager::add(1, 1, 1, 2);
+        PartieManager::add(2, 2, 1, 2);
     }
 }
