@@ -13,7 +13,6 @@ function getLast($table, $column = "id", $whereCondition = null)
         
     $query = "SELECT $column FROM $table WHERE $whereCondition ORDER BY $column DESC LIMIT 1 ";
     $rs = mysql_query($query);
-           echo "$query <br>";
 
     if ($rs === false || $rs === NULL)
         return 0;
