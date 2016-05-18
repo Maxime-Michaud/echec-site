@@ -143,6 +143,8 @@ CREATE TABLE IF NOT EXISTS suggestions(
         
         RelationManager::add(1, 2, 2);
         RelationManager::add(1, 2, 1);
-
+        
+        DefiManager::addToUser(2, 1, 1, 1, 1);
+        DefiManager::addToUser(NULL, 1, 1, 1, 1);
     }
 }
