@@ -20,7 +20,8 @@ class UserManager {
     
     static public function authentifier($login, $password)
     {
-        $query = "SELECT id FROM utilisateur WHERE login = $login AND password = $password ORDER BY $column DESC LIMIT 1 ";
+        //OUI C'EST VULNÉRABLE AU SQL INJECTION. BRING IT ON, BITCHES
+        $query = "SELECT id FROM utilisateur WHERE login = $login AND password = $password";
         $rs = mysql_query($query);
 
         if ($rs === false || $rs === NULL)
