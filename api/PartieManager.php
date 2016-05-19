@@ -42,4 +42,33 @@ class PartieManager {
 
         mysql_query($query);
     }
+    
+    /**
+     * 
+     * @param type $id
+     * @return boolean
+     */
+    static public function get($id)
+    {
+        $query = "SELECT * FROM partie WHERE id = $id";
+        $rs = mysql_query($query);
+
+        if ($rs === false || $rs === NULL)
+            return false;
+
+        return mysql_fetch_assoc($rs);
+    }
+    
+   
+    static public function getTours($id)
+    {
+        $query = "SELECT * FROM tours WHERE partie = $id";
+        $rs = mysql_query($query);
+
+        if ($rs === false || $rs === NULL)
+            return false;
+        
+        return mysql_fetch_assoc($rs);
+    }
+    
 }
