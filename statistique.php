@@ -32,11 +32,37 @@ and open the template in the editor.
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-				
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Statistique</th>
+							<th>valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Victoire</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Defaite</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Moyenne de coup par partie</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Moyenne des pions perdus</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Moyenne des pions tués</td>
+							<td></td>
+						</tr>
+					</tbody>
+			    </table>
 			</div>
 		</div>
-        <?php
-			echo "//TODO le look de la page plus lien";
-        ?>
     </body>
 </html>

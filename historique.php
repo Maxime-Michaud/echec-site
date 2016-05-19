@@ -32,11 +32,14 @@ and open the template in the editor.
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-				
+				 <iframe class="contenu" src="grille.php"></iframe>
 			</div>
 		</div>
-        <?php
-			echo "//TODO le look de la page plus lien";
-        ?>
+		<div class="row">
+			<div class="col-xs-12">
+				   <?php
+						echo "//TODO le look de la page plus lien";
+					?>
+			</div>
     </body>
 </html>

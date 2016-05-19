@@ -46,18 +46,41 @@ function getAndIcrementCaseNumber(increment)
 }
 </script>
 <script>
-var pieces = ["PN100", "PB170","TN107"];
+var pieces = [["PN100", "PB170","TN107"], ["PN130", "PB155","TN137"]];
+var numArray = 0;
 var caseNb = -1;
+
+function precedentSuivant(suivant)
+{
+    if(suivant)
+        numArray++;
+    else
+        numArray--;
+    if(numArray == pieces.length)
+        numArray = pieces.length - 1;
+    if(numArray < 0)
+        numArray = 0;
+    var images = document.getElementsByTagName('img');
+    var l = images.length;
+    for (var i = 0; i < l; i++) 
+    {
+        images[0].parentNode.removeChild(images[0]);
+    }
+    for(var i = 0; i < 64; i++)
+    {
+        putImage(getAndIcrementCaseNumber(true));
+    }
+}
 function putImage(caseNumber)
 {
-    for(var i = 0; i < pieces.length; i++)
+    for(var i = 0; i < pieces[numArray].length; i++)
     {
-        var caseTemp = String(pieces[i].charAt(3)) + String(pieces[i].charAt(4));
+        var caseTemp = String(pieces[numArray][i].charAt(3)) + String(pieces[numArray][i].charAt(4));
         if(caseTemp == caseNumber)
         {
             
             var img = new Image(document.createElement("img" + getAndIcrementCaseNumber(false)));
-            img.setAttribute("src", getImageSource(pieces[i]));
+            img.setAttribute("src", getImageSource(pieces[numArray][i]));
             //alert(img.getAttribute("src")); // ./Image/PN.png
             var nom = "case" + getAndIcrementCaseNumber(false);
             var src = document.getElementById(nom);
@@ -196,7 +219,9 @@ function getImageSource(piece)
             <divCase2 class="col-xs-1" id="case76"></divCase2>
             <divCase2 class="col-xs-1" id="case77"></divCase2>
         </div>
-        
+        <button type=button onclick="precedentSuivant(false)">précédent</button>
+        <button type=button onclick="precedentSuivant(true)">suivant</button>
+
         <script>
             for(var i = 0; i < 64; i++)
             {

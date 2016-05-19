@@ -1,4 +1,22 @@
-.ulnone {
+body {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+ }
+
+ 
+ label, input {
+    display: block;
+}
+
+label {
+    margin-bottom: 5px;
+}
+ 
+ .box {
+	border:#666666 solid 1px;
+ }
+ 
+ .ulnone {
     list-style-type: none;
 }
 
