@@ -30,9 +30,5 @@ and open the template in the editor.
 				  </ul>
 			</div>
 		</div>
-		<?php
-			echo "//TODO le look de la page plus lien";
-        ?>
-      
     </body>
 </html>

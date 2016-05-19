@@ -15,7 +15,7 @@ and open the template in the editor.
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 		<div class="row">
-			<div class="col-xs-2"> TEMP logo TEMP </div>
+			<div class="col-xs-2"> Echec ta mère </div>
 		</div>
 		
 		<div class="row">
@@ -32,7 +32,7 @@ and open the template in the editor.
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-				<p class="text-center">Le jeu NOMTEMPORAIREPATATE qui permet aux utilisateurs de s'améliorer aux échecs grace à :</p>
+				<p class="text-center">Le jeu Echec ta mère qui permet aux utilisateurs de s'améliorer aux échecs grace à :</p>
 				<ul class="ulnone">
 				   <li class="text-center"> Un système qui analyse vos parties pour ensuite faire des suggestions. </li>
 				   <li class="text-center"> Une liste de défi pour améliorer vos techniques de jeu. </li> 
@@ -41,8 +41,5 @@ and open the template in the editor.
 				</ul>
 			</div>
 		</div>
-        <?php
-			echo "//TODO le look de la page plus lien";
-        ?>
     </body>
 </html>

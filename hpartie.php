@@ -1,3 +1,18 @@
+<?php
+	/**
+	 * Le php qui gère la connexion d'un utilisateur
+	 *
+	 * @author Kéven
+	 */
+	try
+	{
+		$bdd = new PDO('mysql:host=localhost;dbname=beton395_echec;charset=utf8', 'root', '');
+	}
+	catch (Exception $e)
+	{
+			die('Erreur : ' . $e->getMessage());
+	}
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -13,28 +28,15 @@ and open the template in the editor.
     </head>
     <body>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-		<div class="row">
-			<div class="col-xs-2"> TEMP logo TEMP </div>
-		</div>
 		
 		<div class="row">
 			<div class="col-xs-12">
-				 <ul class="nav nav-pills nav-justified" role="tablist">
-					<li><a href="index.php">Acceuil</a></li>
-					<li><a href="defi.php">Les défis</a></li>
-					<li class="active"><a href="client.php">Client</a></li>
-					<li><a href="statistique.php">Statistique</a></li>   
-					<li><a href="historique.php">Historique des parties</a></li>
-					<li><a href="telechargement.php">Téléchargement</a></li>   					
-				  </ul>
+				<p class="text-center">Voici vos dernières parties:</p>
+				<?php
+					//todo la boucle d'affichage
+				?>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				 <iframe class="contenu" src="login.php"></iframe>
-			</div>
-		</div>
-		<div class="row">
     </body>
 </html>
+

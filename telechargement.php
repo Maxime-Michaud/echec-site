@@ -36,11 +36,6 @@ and open the template in the editor.
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-12">
-				   <?php
-						echo "//TODO le look de la page plus lien";
-					?>
-			</div>
 		</div>
     </body>
 </html>

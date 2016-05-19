@@ -8,7 +8,6 @@
 	try
 	{
 		$bdd = new PDO('mysql:host=localhost;dbname=beton395_echec;charset=utf8', 'root', '');
-		echo "connecter";
 	}
 	catch (Exception $e)
 	{
@@ -40,6 +39,7 @@
 			$nom = htmlspecialchars($_POST['nom']);
 			$prenom = htmlspecialchars($_POST['prenom']);
 			$email = htmlspecialchars($_POST['email']);
+			$type_compte = 1;
 			
 			UserManager::add($login, $password, $nom, $prenom, $email, $type_compte);
 			
