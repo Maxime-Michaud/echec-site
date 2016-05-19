@@ -17,4 +17,17 @@ class UserManager {
         $query = "INSERT INTO utilisateur VALUES ($id, '$login', '$password', '$nom', '$prenom', '$email', $type_compte, $updated)";
         mysql_query($query);
     }
+    
+    static public function authentifier($login, $password)
+    {
+        $query = "SELECT id FROM utilisateur WHERE login = $login AND password = $password ORDER BY $column DESC LIMIT 1 ";
+        $rs = mysql_query($query);
+
+        if ($rs === false || $rs === NULL)
+            return false;
+
+        $row = mysql_fetch_assoc($rs);
+
+        return $row["id"] ;
+    }
 }

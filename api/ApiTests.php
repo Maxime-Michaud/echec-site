@@ -13,8 +13,9 @@ and open the template in the editor.
         <?php
             require_once 'InitDB.php';
             mysql_connect("localhost", "root", "");
-            echo DB::drop();
-            echo DB::init();
+            echo DB::drop("beton395_echec");
+            echo mysql_error();
+            echo DB::init("beton395_echec");
             
         ?>
     </body>

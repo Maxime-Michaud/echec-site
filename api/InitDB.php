@@ -15,7 +15,7 @@ class DB {
      */
     public static function init($nom = "echec") {
         if (!DB::createDatabase($nom))
-            return;
+            return mysql_error();
 
         mysql_select_db($nom);
         
