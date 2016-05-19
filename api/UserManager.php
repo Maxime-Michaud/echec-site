@@ -21,14 +21,25 @@ class UserManager {
     static public function authentifier($login, $password)
     {
         //OUI C'EST VULNÉRABLE AU SQL INJECTION. BRING IT ON, BITCHES
-        $query = "SELECT id FROM utilisateur WHERE login = $login AND password = $password";
+        $query = "SELECT id FROM utilisateur WHERE login = '$login' AND password = '$password'";
+        $rs = mysql_query($query);
+
+        if ($rs === false || $rs === NULL)
+            return $rs;
+
+        $row = mysql_fetch_assoc($rs);
+
+        return $row["id"] ;
+    }
+    
+    static public function get($id)
+    {
+        $query = "SELECT * FROM utilisateur WHERE id = $id";
         $rs = mysql_query($query);
 
         if ($rs === false || $rs === NULL)
             return false;
 
-        $row = mysql_fetch_assoc($rs);
-
-        return $row["id"] ;
+        return mysql_fetch_assoc($rs);
     }
 }
