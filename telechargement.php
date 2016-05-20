@@ -31,9 +31,7 @@ Page qui permet de télécharger l'application
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-				<p class="text-center"><?php
-					echo "lien vers l'application"
-				?></p>
+				<p class="text-center"><a href="app-release-unaligned.apk" download>Télécharger l'application</a></p>
 			</div>
 		</div>
 		<div class="row">
