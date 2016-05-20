@@ -1,10 +1,14 @@
+/* Feuille de style */
 body {
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:14px;
+	font-size:24px;
  }
 
+ .green{
+	 background-color: #CEF6CE;
+ }
  
- label, input {
+label, input {
     display: block;
 }
 

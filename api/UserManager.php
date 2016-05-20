@@ -14,6 +14,9 @@
 class UserManager {
     static public function add($id, $login, $password, $nom, $prenom, $email, $type_compte, $updated = 0)
     {
+		require_once 'Utils.php';
+        if ($id == null)
+            $id = getLast ("utilisateur") + 1;
         $query = "INSERT INTO utilisateur VALUES ($id, '$login', '$password', '$nom', '$prenom', '$email', $type_compte, $updated)";
         mysql_query($query);
     }
@@ -41,5 +44,17 @@ class UserManager {
             return false;
 
         return mysql_fetch_assoc($rs);
+    }
+	
+	static public function getDernierePartie($userID)
+    {
+        $query = "SELECT * FROM partie WHERE noir = $userID OR blanc = $userID";
+        $rs = mysql_query($query);
+
+        if ($rs === false || $rs === NULL)
+            return false;
+        
+        return mysql_fetch_assoc($rs);
+
     }
 }

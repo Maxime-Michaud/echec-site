@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+Page qui permet de télécharger l'application
 -->
+<?php
+	mysql_connect("localhost", "root","");
+	mysql_select_db("beton395_echec");
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -15,24 +17,23 @@ and open the template in the editor.
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 		<div class="row">
-			<div class="col-xs-2"> TEMP logo TEMP </div>
+			<div class="col-xs-2"> <img src="Image/echecetmax.jpg" alt="Logo Echec et max" style="width:100%;height:100%;"> </div>
 		</div>
 		
-		<div class="row">
-			<div class="col-xs-12">
+		<div class="row green">
+			<div class="col-xs-6">
 				 <ul class="nav nav-pills nav-justified" role="tablist">
 					<li><a href="index.php">Acceuil</a></li>
-					<li><a href="defi.php">Les défis</a></li>
 					<li><a href="client.php">Client</a></li>
-					<li><a href="statistique.php">Statistique</a></li>   
-					<li><a href="historique.php">Historique des parties</a></li>
 					<li class="active"><a href="telechargement.php">Téléchargement</a></li>   					
 				  </ul>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-				 <iframe class="contenu" src="http://www.w3schools.com"></iframe>
+				<p class="text-center"><?php
+					echo "lien vers l'application"
+				?></p>
 			</div>
 		</div>
 		<div class="row">

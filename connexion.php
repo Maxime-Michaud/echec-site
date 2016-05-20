@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<!--
+Page qui permet à l'utilisateur de se connecter
+-->
 <?php
 	/**
 	 * Le php qui gère la connexion d'un utilisateur
@@ -6,14 +10,8 @@
 	 */
 	session_start();
 	require 'api/UserManager.php';
-	try
-	{
-		$bdd = new PDO('mysql:host=localhost;dbname=beton395_echec;charset=utf8', 'root', '');
-	}
-	catch (Exception $e)
-	{
-			die('Erreur : ' . $e->getMessage());
-	}
+	mysql_connect("localhost", "root","");
+	mysql_select_db("beton395_echec");
 
 	if(isset($_POST['fconnexion'])){
 		if(!empty($_POST['username'] AND !empty($_POST['password']))){
@@ -22,33 +20,16 @@
 			$password = md5($_POST['password']);
 			
 			if(UserManager::authentifier($login, $password) == false){
-				echo "Marche pas";
+				echo mysql_error();
 			}
 			else{
-				$userinfo = UserManager::authentifier($login, $password);
-				$_SESSION['id'] = $userinfo['id'];
-				$_SESSION['login'] = $userinfo['login'];
+				$userId = UserManager::authentifier($login, $password);
+				$user = UserManager::get($userId);
+				$_SESSION['id'] = $user['id'];
 				header("Location: profil.php?id=".$_SESSION['id']);
 			};
 		}else{
 			$erreurCo = "Veuillez remplir tous les champs.";
-		}
-	}
-	
-	if(isset($_POST['finscription'])){
-		if(!empty($_POST['username'] AND !empty($_POST['password']))){
-			
-			$login = htmlspecialchars($_POST['username']);
-			$password = md5($_POST['password']);
-			$nom = htmlspecialchars($_POST['nom']);
-			$prenom = htmlspecialchars($_POST['prenom']);
-			$email = htmlspecialchars($_POST['email']);
-			$type_compte = 1;
-			
-			UserManager::add($login, $password, $nom, $prenom, $email, $type_compte);
-			
-		}else{
-			$erreurIns = "Veuillez remplir tous les champs.";
 		}
 	}
 ?>
@@ -78,6 +59,7 @@
 								echo '<font color="red">'.$erreurCo.'</font>';
 							}
 						?>
+						<a href="inscription.php">Créer un compte</a>
 					</div>
 
 				</div>

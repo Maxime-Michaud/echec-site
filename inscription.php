@@ -1,21 +1,22 @@
+<!DOCTYPE html>
+<!--
+Page qui permet à l'utilisateur de se s'inscrire
+-->
 <?php
 	/**
-	 * Le php qui gère la connexion d'un utilisateur
+	 * Le php qui gère l'inscription d'un utilisateur
 	 *
 	 * @author Kéven
 	 */
+	session_start();
 	require 'api/UserManager.php';
-	try
-	{
-		$bdd = new PDO('mysql:host=localhost;dbname=beton395_echec;charset=utf8', 'root', '');
-	}
-	catch (Exception $e)
-	{
-			die('Erreur : ' . $e->getMessage());
-	}
+	mysql_connect("localhost", "root","");
+	mysql_select_db("beton395_echec");
 
 	if(isset($_POST['finscription'])){
-		if(!empty($_POST['username'] AND !empty($_POST['password']))){
+		if(!empty($_POST['username']) AND !empty($_POST['password'])
+			AND !empty($_POST['nom'])AND !empty($_POST['prenom'])
+			AND !empty($_POST['email'])){
 			
 			$login = htmlspecialchars($_POST['username']);
 			$password = md5($_POST['password']);
@@ -24,8 +25,17 @@
 			$email = htmlspecialchars($_POST['email']);
 			$type_compte = 1;
 			
-			UserManager::add($login, $password, $nom, $prenom, $email, $type_compte);
-			
+			UserManager::add(null, $login, $password, $nom, $prenom, $email, $type_compte);
+			echo mysql_error();
+			if(UserManager::authentifier($login, $password) == false){
+				echo mysql_error();
+			}
+			else{
+				$userId = UserManager::authentifier($login, $password);
+				$user = UserManager::get($userId);
+				$_SESSION['id'] = $user['id'];
+				header("Location: profil.php?id=".$_SESSION['id']);
+			};
 		}else{
 			$erreurIns = "Veuillez remplir tous les champs.";
 		}
@@ -60,6 +70,7 @@
 								echo '<font color="red">'.$erreurIns.'</font>';
 							}
 						?>
+						<a href="connexion.php">Se connecté</a>
 					</div>
 
 				</div>

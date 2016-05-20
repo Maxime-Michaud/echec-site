@@ -1,34 +1,24 @@
+<!DOCTYPE html>
+<!--
+Page qui s'affiche quand l'utilisateur est connecter
+-->
 <?php
 	/**
-	 * Le php qui gère la connexion d'un utilisateur
+	 * Le php qui affiche que l'utilisateur est connecté
 	 *
 	 * @author Kéven
 	 */
+	session_start();
 	require 'api/UserManager.php';
-	try
-	{
-		$bdd = new PDO('mysql:host=localhost;dbname=beton395_echec;charset=utf8', 'root', '');
-	}
-	catch (Exception $e)
-	{
-			die('Erreur : ' . $e->getMessage());
-	}
-
-	if(isset($_POST['finscription'])){
-		if(!empty($_POST['username'] AND !empty($_POST['password']))){
-			
-			$login = htmlspecialchars($_POST['username']);
-			$password = md5($_POST['password']);
-			$nom = htmlspecialchars($_POST['nom']);
-			$prenom = htmlspecialchars($_POST['prenom']);
-			$email = htmlspecialchars($_POST['email']);
-			$type_compte = 1;
-			
-			UserManager::add($login, $password, $nom, $prenom, $email, $type_compte);
-			
-		}else{
-			$erreurIns = "Veuillez remplir tous les champs.";
-		}
+	mysql_connect("localhost", "root","");
+	mysql_select_db("beton395_echec");
+	
+	if(isset($_GET['id'])){
+		$getId = intval($_GET['id']);
+		$user = UserManager::get($getId);
+	}else{
+		header("Location: connexion.php");
+		$erreur = "Un probème de connection est survenu!";
 	}
 ?>
 <html>  
@@ -46,9 +36,18 @@
 				<div  style = "border: solid 1px #333333; " align = "left">
 
 					<div style = "margin:30px">
-
+						<?php
+						if(isset($_GET['id'])){
+							echo "Bonjour ".$user['prenom']." ".$user['nom']. '<br>';
+							if(isset($error)){
+								echo $erreur;
+							}
+						}
+						?>
+						<a href="statistique.php">Statistique</a></br>
+						<a href="hpartie.php">Historique des parties</a>
 					</div>
-
+		
 				</div>
 
 		</div>

@@ -1,24 +1,25 @@
+<!DOCTYPE html>
+<!--
+Page qui affiche la liste des parties de l'utilisateur
+-->
 <?php
 	/**
-	 * Le php qui gère la connexion d'un utilisateur
+	 * Le php qui gère l'affichage de l'historique des parties
 	 *
 	 * @author Kéven
 	 */
-	try
-	{
-		$bdd = new PDO('mysql:host=localhost;dbname=beton395_echec;charset=utf8', 'root', '');
-	}
-	catch (Exception $e)
-	{
-			die('Erreur : ' . $e->getMessage());
+	session_start();
+	require 'api/UserManager.php';
+	mysql_connect("localhost", "root","");
+	mysql_select_db("beton395_echec");
+	
+	if(isset($_GET['id'])){
+		$getId = intval($_GET['id']);
+		$result = UserManager::getDernierePartie($getId);
+	}else{
+		$erreur = "Un probème de connection est survenu!";
 	}
 ?>
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -33,8 +34,28 @@ and open the template in the editor.
 			<div class="col-xs-12">
 				<p class="text-center">Voici vos dernières parties:</p>
 				<?php
-					//todo la boucle d'affichage
+				if(isset($result)){
+					if ($result->num_rows > 0) {
+						// output data of each row
+						while($row = $result->fetch_assoc()) {
+							$userG = UserManager::get($row["gagnant"]);
+							$nomG = $userG["login"];
+							if($row["gagnant"] == $row["blanc"]){
+								$userL = UserManager::get($row["noir"]);
+							}
+							else{
+								$userL = UserManager::get($row["blanc"]);
+							}
+							$nomL = $userL["login"];
+							echo "Gagnant: ". $nomG." Perdant: ".$nomL;
+						}
+					}
+				}
+				else{
+					echo '<p class="text-center">Aucune partie trouver</p>';
+				}
 				?>
+				<p class="text-center"><a href="grille.php">Afficher la partie</a></p>
 			</div>
 		</div>
     </body>
